@@ -50,3 +50,48 @@ Here’s how you would do the same thing using Docker Compose:
 - **Without Docker Compose:** You have to manually run and manage each container using individual `docker run` commands. It’s more manual and requires you to keep track of each container separately.
 - **With Docker Compose:** You define all your containers in one `docker-compose.yml` file and start them all with a single `docker-compose up` command. It simplifies management and reduces the chances of errors.
 This shows how Docker Compose makes it easier and more efficient to manage multiple containers, especially as your applications become more complex.
+
+### What Does `docker-compose up` Do?
+The `docker-compose up` command is used to:
+1. **Start All Containers**: It starts all the containers defined in your `docker-compose.yml` file.
+2. **Create Networks**: It sets up any networks needed for the containers to communicate with each other.
+3. **Create Volumes**: If your containers need persistent storage, Docker Compose will also create volumes as defined in the file.
+4. **Link Services**: Docker Compose automatically links services together, so they can communicate using service names.
+In short, `docker-compose up` does everything necessary to get your entire application running, based on what you’ve defined in your `docker-compose.yml` file.
+### How to Start and Stop Containers with Docker Compose
+1. **Start Containers:**
+  - **Use `docker-compose up`**:
+    ```bash
+    docker-compose up
+    ```
+    This command starts the containers and shows their logs in the terminal.
+  - **Run in Detached Mode**:
+    If you don’t want to keep your terminal tied up with logs, you can start the containers in the background using the `-d` flag:
+    ```bash
+    docker-compose up -d
+    ```
+2. **Stop Containers:**
+  - **Use `docker-compose down`**:
+    ```bash
+    docker-compose down
+    ```
+    This command stops and removes all the containers, networks, and other resources created by `docker-compose up`.
+    - **Only Stop Containers Without Removing**:
+    If you just want to stop the containers without removing them, you can use:
+    ```bash
+    docker-compose stop
+    ```
+    This will stop the containers, but they will remain on your system so you can start them again quickly.
+3. **Restart Containers:**
+  - **Restart After Stopping**:
+    If you’ve stopped your containers and want to start them again without rebuilding, just use:
+    ```bash
+    docker-compose start
+    ```
+  - **Restart Everything (Rebuild and Run)**:
+    To rebuild images and start containers again, you can simply use `docker-compose up` again.
+### Summary
+- **`docker-compose up`**: Starts all containers, networks, and volumes as defined in your `docker-compose.yml` file. Use the `-d` flag to run in the background.
+- **`docker-compose down`**: Stops and removes all containers, networks, and volumes.
+- **`docker-compose stop`**: Stops the containers but leaves them on your system.
+- **`docker-compose start`**: Restarts the stopped containers without rebuilding.
