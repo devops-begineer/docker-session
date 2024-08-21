@@ -1,0 +1,10 @@
+version: '3'
+services:
+  web:
+    image: busybox
+    command: httpd -f -p 8080
+    ports:
+      - "8080:8080"
+  data:
+    image: busybox
+    command: sh -c "while true; do echo 'data'; sleep 3600; done"
